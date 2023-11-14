@@ -82,6 +82,30 @@ export function start(opts: AsyncREPLOptions): REPLServer {
   }
 
   const repl = (opts.start ?? originalStart)(opts);
+
+  const rlv = require('readline-vim');
+  var vim = rlv(repl);
+
+  // If you want custom bindings, you can add them here.
+  // Eg. the examples from https://github.com/thlorenz/readline-vim/tree/4890a0d6c3b346336a3dc502bda3e43bc219885f#usage :
+  //
+  // var map = vim.map;
+  //
+  // // [insert mode] allow switching to normal mode by typing 'jk' quickly
+  // map.insert('jk', 'esc');
+  //
+  // // [insert mode] go backward in history via 'ctrl-k'
+  // map.insert('ctrl-k', 'ctrl-p');
+  //
+  // // [insert mode] go backward in history via 'ctrl-k'
+  // map.insert('ctrl-space', 'ctrl-n');
+  //
+  // // [normal mode] go backward in history via space bar
+  // map.normal('space', 'k');
+  //
+  // // [normal mode] go forward in history via space bar when ctrl is pressed
+  // map.normal('ctrl-space', 'j');
+
   const originalEval = promisify(
     wrapPauseInput(repl.input, wrapNoSyncDomainError(repl.eval.bind(repl)))
     // string, Context, string is not string, any, string
