@@ -1,3 +1,32 @@
+# mongosh-vim
+
+This is a lightly hacked version of [mongosh](https://github.com/mongodb-js/mongosh) which uses [readline-vim](https://www.npmjs.com/package/readline-vim) to provide vim-bindings on the interactive command line.
+
+## Instructions to build
+
+I did this on Ubuntu 22.04, but it should work on any recent distribution.
+
+**Dependencies**
+
+1. Install node, ideally v20+ (I used v18 from nodesource and it seems fine, apart from a deprecation warning on startup).
+2. Install development environment, eg. `sudo apt-get install build-essential` on Ubuntu/Debian.
+3. Install Kerberos dev package, eg. `sudo apt-get install libkrb5-dev` on Ubuntu/Debian.
+
+**Compile**
+
+```
+git clone https://github.com/devkev/mongosh-vim
+cd mongosh-vim
+npm install
+npm run bootstrap
+npm run compile-exec
+sudo cp -a dist/mongosh /usr/local/bin/mongosh-vim
+```
+
+----
+
+Original README.md:
+
 # mongosh
 
 [Evergreen Waterfall CI](https://evergreen.mongodb.com/waterfall/mongosh)
